@@ -1,0 +1,13 @@
+/* 
+    Document   : UserStyles
+    Created on : 28-ene-2014, 23:21:31
+    Author     : Miki
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+#form_position{ 
+    left: 260px;
+    position: relative;
+}
+

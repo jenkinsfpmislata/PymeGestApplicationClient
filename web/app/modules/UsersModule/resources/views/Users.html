@@ -1,0 +1,167 @@
+<div class="row-fluid" ng-init="readAllUsers()" ng-switch on="selection">
+    <div class="span12" ng-switch-when="table">
+        <!-- BEGIN EXAMPLE TABLE widget-->
+        <div class="widget red">
+            <div class="widget-title">
+                <h4><i class="icon-reorder"></i>Usuarios</h4>
+                <span class="tools">
+                    <a href="javascript:;" class="icon-chevron-down"></a>
+                    <a href="javascript:;" class="icon-remove"></a>
+                </span>
+            </div>
+            <div class="widget-body">
+                <div class="table-tools">
+                    <button id="add-new-button" class="btn green">
+                        Seleccionar todo <i class="icon-check"></i>
+                    </button>
+                    <button id="add-new-button" class="btn green">
+                        Guardar <i class="icon-save"></i>
+                    </button>
+                    <button id="add-new-button" class="btn green" ng-click="showForm()">
+                        Añadir Nuevo <i class="icon-plus"></i> 
+                    </button>
+                    <button id="edit-button" class="btn green" ng-click="findCheckeds()">
+                        Editar <i class="icon-pencil"></i>
+                    </button>
+                    <button id="delete-buton" class="btn green" ng-click="deleteUsers(findCheckeds())" >
+                        Eliminar <i class="icon-trash"></i>
+                    </button>
+                    <button class="btn dropdown-toggle" data-toggle="dropdown">
+                        Herramientas
+                        <i class="icon-angle-down"></i>
+                    </button>
+                    <div id="prueba">
+                        <input id="search-field" type="search" ng-model="query" placeholder="filtrar usuarios..." />
+                        <div class="lupa-icon">
+                            <i class="icon-search"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-pagination">
+                    <div class="dataTables_paginate paging_bootstrap pagination">
+                        <ul>
+                            <li>
+                                <button ng-disabled="currentPage === 0" ng-click="currentPage=currentPage-1">← Ant</button>
+                            </li>
+                            <li ng-repeat="">
+                                <a href="#">1</a>
+                            </li>
+                            <li>
+                                <a href="#">2</a>
+                            </li>
+                            <li>
+                                <a href="#">3</a>
+                            </li>
+                            <li>
+                                <button ng-disabled="currentPage >= allUsers.length/pageSize.value -1" ng-click="currentPage=currentPage+1">Sig → </button>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="pagination-info">
+                        <label>
+                            <select class="xsmall" ng-model="pageSize" ng-options="o.name for o in resultsPerPage"></select>
+                            Elementos por página
+                        </label>
+                    </div>
+                </div>
+                Pagina actual: {{currentPage}}, Tamaño pagina: {{pageSize.value}}, Total usuarios: {{allUsers.length}}
+                <table class="table table-bordered" id="sample_1">
+                    <thead>
+                        <tr>
+                            <!--<th id="check-size">Check</th>-->
+                            <th class="check-size">
+                                <input id="allCheckboxes" class="" type="checkbox" ng-model="allCheckboxes" ng-click="checkAll()"  >
+                                <label class="css-label lrg vlad" name="checkbox_vlad_lbl" for="allCheckboxes" >
+                                </label>
+                            </th>
+                            <th class="id-size">Id</th>
+                            <th class="name-size"class="hidden-phone">Nombre</th>
+                            <th class="apellido-size" class="hidden-phone">Apellidos</th>
+                            <th class="mail-size">Correo electronico</th>
+                            <th class="cuenta-size" class="hidden-phone">Tipo Cuenta</th>
+                            <th class="edit-size">Edit</th>
+
+                        </tr>
+                    </thead>
+                    <tbody class="example-animate-container">
+                        <tr class="odd gradeX animate-repeat" ng-repeat="user in allUsers | filter:query">
+                            <!--<td>
+                                <button class="btn btn-warning"><i class="icon-ok"></i></button>
+                            </td>-->
+                            <td id="check-size" >
+                                <input id="{{user.id_usuario}}" class="" type="checkbox" ng-model="user.checked"  >
+                                <label class="css-label lrg vlad" name="checkbox_vlad_lbl" for="{{user.id_usuario}}">
+                                </label>
+                            </td>
+                            <td><input id="color-input" class="id-size" type="text" ng-model="user.id_usuario" ng-disabled="user.disabled" /></td>
+                            <td><input id="color-input" class="name-size" type="text" ng-model="user.nombre" ng-disabled="user.disabled" /></td>
+                            <td><input id="color-input" class="apellido-size"type="text" ng-model="user.apellidos" ng-disabled="user.disabled" /></td>
+                            <td><input id="color-input" type="text" ng-model="user.correo_electronico" ng-disabled="user.disabled" /></td>
+                            <td><input id="color-input" class="cuenta-size" type="text" ng-model="user.tipo_cuenta" ng-disabled="user.disabled" /></td>
+                            <td>
+                                <button class="btn btn-success"><i class="icon-eye-open"></i></button>
+                                <button class="btn btn-primary" ng-click="selection = form"><i class="icon-pencil"></i></button>
+                                <button class="btn btn-danger" ng-click="deleteUser(user.id_usuario)"><i class="icon-trash "></i></button>
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    
+    
+    <div id="form_position" class="span6" ng-switch-when="form">
+        <!-- BEGIN SAMPLE FORMPORTLET-->
+        <div id="width-form" class="widget green">
+            <div class="widget-title">
+                <h4><i class="icon-reorder"></i> Usuario </h4>
+                <span class="tools">
+                    <a href="javascript:;" class="icon-chevron-down"></a>
+                    <a href="javascript:;" class="icon-remove"></a>
+                </span>
+            </div>
+            <div class="widget-body">
+                <!-- BEGIN FORM-->
+                <form action="" class="form-horizontal" method="POST">
+                    <div class="control-group">
+                        <label class="control-label">Nombre</label>
+                        <div class="controls">
+                            <input type="text" class="input-large" ng-model="user.nombre" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">Apellido</label>
+                        <div class="controls">
+                            <input type="text" class="input-large" ng-model="user.apellidos" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">Tipo Cuenta</label>
+                        <div class="controls">
+                            <input type="text" class="input-large" ng-model="user.tipo_cuenta" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">Email Address</label>
+                        <div class="controls">
+                            <div class="input-prepend">
+                                <span class="add-on">@</span><input class="" type="text" ng-model="user.correo_electronico" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-success" ng-click="insertUser()" >Aceptar</button>
+                        <button type="button" class="btn" ng-click="showTable()">
+                            Volver
+                        </button>
+                    </div>
+                </form>
+                <!-- END FORM-->
+            </div>
+        </div>
+        <!-- END SAMPLE FORM PORTLET-->
+    </div>
+</div>

@@ -1,0 +1,103 @@
+<div class="row-fluid">
+    <div class="span12">
+        <!-- BEGIN EXAMPLE TABLE widget-->
+        <div class="widget red">
+            <div class="widget-title">
+                <h4><i class="icon-reorder"></i>Clientes</h4>
+                <span class="tools">
+                    <a href="javascript:;" class="icon-chevron-down"></a>
+                    <a href="javascript:;" class="icon-remove"></a>
+                </span>
+            </div>
+            <div class="widget-body">
+                <div class="table-tools">
+                    <button id="add-new-button" class="btn green">
+                        Guardar <i class="icon-save"></i>
+                    </button>
+                    <button id="add-new-button" class="btn green">
+                        Actualizar <i class="icon-refresh"></i>
+                    </button>
+                    <button id="add-new-button" class="btn green">
+                        Añadir Nuevo <i class="icon-plus"></i>
+                    </button>
+                    <button id="edit-button" class="btn green">
+                        Editar <i class="icon-pencil"></i>
+                    </button>
+                    <button id="delete-buton" class="btn green">
+                        Eliminar <i class="icon-trash"></i>
+                    </button>
+                    <button class="btn dropdown-toggle" data-toggle="dropdown">
+                        Herramientas
+                        <i class="icon-angle-down"></i>
+                    </button>
+
+                    <input id="search-field" type="search" ng-model="query" placeholder="filtrar clientes..." />
+                    <div class="lupa-icon">
+                        <i class="icon-search"></i>
+                    </div>
+
+                    <div class="dataTables_paginate paging_bootstrap pagination">
+                        <ul>
+                            <li>
+                                <button ng-disabled="currentPage === 0" ng-click="currentPage=currentPage-1">← Ant</button>
+                            </li>
+                            <li ng-repeat="">
+                                <a href="#">1</a>
+                            </li>
+                            <li>
+                                <a href="#">2</a>
+                            </li>
+                            <li>
+                                <a href="#">3</a>
+                            </li>
+                            <li>
+                                <button ng-disabled="currentPage >= clientes.length/pageSize.value -1" ng-click="currentPage=currentPage+1">Sig → </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="table-pagination">
+                    <div class="pagination-info">
+                        <label>
+                            <select class="xsmall" ng-model="pageSize" ng-options="o.name for o in resultsPerPage"></select>
+                            elementos por página
+                            <p style="float: right">Mostrando del 1 al 10 de 48 clientes</p>
+                        </label>
+                    </div>
+                </div>
+                Pagina acual: {{currentPage}}, Tamaño pagina: {{pageSize.value}}, Total clientes {{clientes.length}}
+                <table class="table table-striped table-bordered" id="sample_1">
+                    <thead>
+                        <tr>
+                            <th style="width:8px;">
+                                <input id="allCheckboxes" class="css-checkbox lrg" type="checkbox" ng-model="allCheckboxes" ng-checked="allCheckboxes" ng-click="checkAll()">
+                                <label class="css-label lrg vlad" name="checkbox_vlad_lbl" for="allCheckboxes" >
+                                </label>
+                            </th>
+                            <th>Nombre</th>
+                            <th class="hidden-phone">Email</th>
+                            <th class="hidden-phone">Puntos</th>
+                            <th class="hidden-phone">Fecha alta</th>
+                            <th class="hidden-phone"></th>
+                        </tr>
+                    </thead>
+                    <tbody class="example-animate-container">
+                        <tr class="odd gradeX animate-repeat" ng-repeat="cliente in clientes | filter:query">
+                            <td>
+                                <input id="checkbox_vlad{{cliente.id}}" class="css-checkbox lrg" type="checkbox" ng-model="cliente.checked" ng-checked="cliente.checked">
+                                <label class="css-label lrg vlad" name="checkbox_vlad_lbl" for="checkbox_vlad{{cliente.id}}">
+                                </label>
+                            </td>
+                            <td><input type="text" ng-model="cliente.nombre" ng-disabled="cliente.show" /></td>
+                            <td><a href="mailto:jhone-doe@gmail.com">{{cliente.email}}</a></td>
+                            <td><input type="text" ng-model="cliente.puntos" ng-disabled="cliente.show" /></td>
+                            <td><input type="text" ng-model="cliente.fechaAlta" ng-disabled="cliente.show" /></td>
+                            <td><span class="label label-success">{{cliente.checked}}</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- END EXAMPLE TABLE widget-->
+    </div>
+</div>
