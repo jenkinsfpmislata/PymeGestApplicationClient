@@ -69,7 +69,7 @@
 
     -->
     
-    <target name="Des_Client" depends="-configureAnt,dist" >
+    <target name="desplegarProduccionCliente" depends="-configureAnt,dist" >
         <!-- Permite compilar el código sin que esté NetBeans instalado -->
     </target>
 
