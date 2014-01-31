@@ -8,6 +8,14 @@
 angular.module('UsersModule', [
     'restangular'
 ])
-.config(function(RestangularProvider) {
-    RestangularProvider.setBaseUrl('http://localhost:8084/PymegestApplicationServer/api/');
+        .config(function(RestangularProvider) {
+    RestangularProvider.setBaseUrl('/PymeGestApplicationServer/api/');
+    
+    RestangularProvider.addElementTransformer('Usuario', false, function(user) {
+
+        user.disabled = true;
+        user.checked = false;
+        
+        return user;
+    });
 });

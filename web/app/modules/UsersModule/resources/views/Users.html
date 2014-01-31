@@ -100,7 +100,7 @@
                             <td><input id="color-input" class="cuenta-size" type="text" ng-model="user.tipo_cuenta" ng-disabled="user.disabled" /></td>
                             <td>
                                 <button class="btn btn-success"><i class="icon-eye-open"></i></button>
-                                <button class="btn btn-primary" ng-click="selection = form"><i class="icon-pencil"></i></button>
+                                <button class="btn btn-primary" ng-click="editUser(user.id_usuario)"><i class="icon-pencil"></i></button>
                                 <button class="btn btn-danger" ng-click="deleteUser(user.id_usuario)"><i class="icon-trash "></i></button>
                             </td>
 
@@ -129,26 +129,26 @@
                     <div class="control-group">
                         <label class="control-label">Nombre</label>
                         <div class="controls">
-                            <input type="text" class="input-large" ng-model="user.nombre" />
+                            <input type="text" class="input-large" ng-model="oneUser.nombre" />
                         </div>
                     </div>
                     <div class="control-group">
                         <label class="control-label">Apellido</label>
                         <div class="controls">
-                            <input type="text" class="input-large" ng-model="user.apellidos" />
+                            <input type="text" class="input-large" ng-model="oneUser.apellidos" />
                         </div>
                     </div>
                     <div class="control-group">
                         <label class="control-label">Tipo Cuenta</label>
                         <div class="controls">
-                            <input type="text" class="input-large" ng-model="user.tipo_cuenta" />
+                            <input type="text" class="input-large" ng-model="oneUser.tipo_cuenta" />
                         </div>
                     </div>
                     <div class="control-group">
                         <label class="control-label">Email Address</label>
                         <div class="controls">
                             <div class="input-prepend">
-                                <span class="add-on">@</span><input class="" type="text" ng-model="user.correo_electronico" />
+                                <span class="add-on">@</span><input class="" type="text" ng-model="oneUser.correo_electronico" />
                             </div>
                         </div>
                     </div>

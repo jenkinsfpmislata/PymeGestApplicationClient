@@ -11,36 +11,37 @@ angular.module('UsersModule').controller('UsersDefaultController', [
     function($scope, Restangular) {
 
         /*
+         * VARIABLES GLOBALES
+         */
+
+        baseUsers = Restangular.all('Usuario');
+
+        $scope.oneUser = {};
+
+        /*
          * LEER TODOS LOS USUARIOS
          */
 
         $scope.readAllUsers = function() {
-            
+
             $scope.selection = "table";
-            
-            var baseUsers = Restangular.all('Usuario');
+
             baseUsers.getList().then(function(users) {
-
                 $scope.allUsers = users;
-
-                $scope.allUsers.forEach(function(user) {
-
-                    user.disabled = true;
-                    user.checked = false;
-                });
             });
 
         };
-        
+
         $scope.showTable = function() {
-            
+
             $scope.selection = "table";
-            
+            $scope.oneUser = {};
+
         };
         $scope.showForm = function() {
-            
+
             $scope.selection = "form";
-            
+
         };
 
         $scope.resultsPerPage = [{name: "2", value: 2}, {name: "5", value: 5}, {name: "10", value: 10}];
@@ -126,16 +127,18 @@ angular.module('UsersModule').controller('UsersDefaultController', [
         /*
          * INSERTA UN USUARIO
          */
-$scope.user = {};
+
         $scope.insertUser = function() {
-            
+
             var baseUsers = Restangular.all('Usuario');
-            
-            baseUsers.post($scope.user);
-            
-            alert($scope.user.nombre);
-            
-            $scope.selection = "table";
+
+            baseUsers.post($scope.oneUser);
+
+            //$scope.allUsers.push($scope.oneUser);
+
+            $scope.oneUser = {};
+
+            $scope.readAllUsers();
         };
 
 
@@ -143,29 +146,13 @@ $scope.user = {};
          * EDITAR UN USUARIO
          */
 
-//        $scope.editUser = function() {
-//
-//            baseUsers.getList().then(function(users) {
-//
-//                /*
-//                 * Obtenemos el primer user de la lista
-//                 */
-//                var firstUser = users[0];
-//                /*
-//                 * Modificamos el nombre de nuestro user
-//                 */
-//                alert(firstUser.nombre);
-//                firstUser.nombre = "Maria";
-//                alert(firstUser.nombre);
-//                /*
-//                 * Actulizamos nuestro user
-//                 */
-//                firstUser.put();
-//                alert("Salgo");
-//
-//            });
-//
-//
-//        };
+        $scope.editUser = function(id_user) {
+
+            var user = Restangular.one('Usuario', id_user).get();
+            alert(user.nombre);
+            //user.nombre = 'Sepia';
+            //user.put();
+            //$scope.selection = "form";
+        };
     }
 ]);

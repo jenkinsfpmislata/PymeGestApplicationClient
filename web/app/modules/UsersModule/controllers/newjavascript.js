@@ -89,7 +89,7 @@ angular.module('UsersModule').controller('UsersDefaultController', [
 
                 // Custom methods are available now :).
                 // GET /accounts/123/users/messages?param=myParam
-                users.customGET("messages", {param: "myParam"})
+                users.customGET("messages", {param: "myParam"});
 
                 var firstUser = users[0];
 
@@ -98,13 +98,13 @@ angular.module('UsersModule').controller('UsersDefaultController', [
 
                 // ALL http methods are available :)
                 // HEAD /accounts/123/users/456
-                firstUser.head()
+                firstUser.head();
 
             });
 
         }, function errorCallback() {
             alert("Oops error from server :(");
-        })
+        });
 
 // Second way of creating Restangular object. URL and ID :)
         var account = Restangular.one("accounts", 123);
