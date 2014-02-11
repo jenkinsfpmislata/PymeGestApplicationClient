@@ -65,13 +65,6 @@
         <!-- Main App -->
         
         <script type="text/javascript" src="app/app.js"></script>
-        <script type="text/javascript" src="app/services/SimpleRESTService.js"></script>
-    
-        <!-- ClientsModule -->
-        
-        <script type="text/javascript" src="app/modules/ClientsModule/ClientsModule.js"></script>
-        <script type="text/javascript" src="app/modules/ClientsModule/controllers/ClientsDefaultController.js"></script>
-        <script type="text/javascript" src="app/modules/ClientsModule/controllers/ClientsFormsController.js"></script>
         
          <!-- UsersModule -->
         
@@ -82,9 +75,15 @@
          
         <!-- ProductModule -->
         
-        <script type="text/javascript" src="app/modules/ProductModule/ProductModule.js"></script>
-                
-        <!-- SuppliersModule -->
+        <script type="text/javascript" src="app/modules/ProductsModule/ProductsModule.js"></script>
+        <script type="text/javascript" src="app/modules/ProductsModule/controllers/ProductsDefaultController.js"></script>
+        <link rel="stylesheet" type="text/css" href="app/modules/ProductsModule/resources/css/ProductsStyle.css" />
+        
+        <!-- StaffModule -->
+        
+        <script type="text/javascript" src="app/modules/StaffModule/StaffModule.js"></script>
+        <script type="text/javascript" src="app/modules/StaffModule/controllers/StaffDefaultController.js"></script>
+        <link rel="stylesheet" type="text/css" href="app/modules/StaffModule/resources/css/StaffStyles.css" />
         
     </head>
     <!-- END HEAD -->
@@ -103,7 +102,7 @@
                     </div>
                     <!--END SIDEBAR TOGGLE-->
                     <!-- BEGIN LOGO -->
-                    <a class="brand" href="index.html">
+                    <a class="brand" href="#">
                         <h1 id="possition-logo">PYMEGEST</h1>
                     </a>
                     <!-- END LOGO -->
@@ -362,8 +361,8 @@
                     <!-- BEGIN SIDEBAR MENU -->
                     <ul class="sidebar-menu">
                         <li class="sub-menu">
-                            <a class="" href="index.html">
-                                <i class="icon-dashboard"></i>
+                            <a class="" href="#">
+                                <i class="icon-desktop"></i>
                                 <span>Panel de control</span>
                             </a>
                         </li>
@@ -374,7 +373,7 @@
                                 <span class="arrow"></span>
                             </a>
                             <ul class="sub">
-                                <li><a class="" href="#">Información</a></li>
+                                <li><a class="" href="#">Informacion</a></li>
                                 <li><a class="" href="#">Bancos</a></li>
                                 <li><a class="" href="#">Logo</a></li>
                                 <li><a class="" href="#">Contactos</a></li>
@@ -383,35 +382,46 @@
                         </li>
                         <li class="sub-menu">
                             <a href="javascript:;" class="">
-                                <i class="icon-cogs"></i>
+                                <i class="icon-user"></i>
+                                <span>Empleados</span>
+                                <span class="arrow"></span>
+                            </a>
+                            <ul class="sub">
+                                <li><a class="" href="#/employed">Listado</a></li>
+                                <li><a class="" href="#">Gestion de puestos</a></li>
+                            </ul>
+                        </li>
+                        <li class="sub-menu">
+                            <a href="javascript:;" class="">
+                                <i class="icon-group"></i>
                                 <span>Clientes</span>
                                 <span class="arrow"></span>
                             </a>
                             <ul class="sub">
-                                <li><a class="" href="#/clientes">Calendar</a></li>
-                                <li><a class="" href="#/prueba">Grids</a></li>
-                                <li><a class="" href="#/usuarios">Chart Js</a></li>
-                                <li><a class="" href="flot_chart.html">Flot Charts</a></li>
-                                <li><a class="" href="gallery.html"> Gallery</a></li>
+                                <li><a class="" href="#">Calendar</a></li>
+                                <li><a class="" href="#">Grids</a></li>
+                                <li><a class="" href="#">Chart Js</a></li>
+                                <li><a class="" href="#">Flot Charts</a></li>
+                                <li><a class="" href="#"> Gallery</a></li>
                             </ul>
                         </li>
                         <li class="sub-menu">
                             <a href="javascript:;" class="">
-                                <i class="icon-tasks"></i>
+                                <i class="icon-truck"></i>
                                 <span>Proveedores</span>
                                 <span class="arrow"></span>
                             </a>
                             <ul class="sub">
-                                <li><a class="" href="form_layout.html">Form Layouts</a></li>
-                                <li><a class="" href="form_component.html">Form Components</a></li>
-                                <li><a class="" href="form_wizard.html">Form Wizard</a></li>
-                                <li><a class="" href="form_validation.html">Form Validation</a></li>
-                                <li><a class="" href="dropzone.html">Dropzone File Upload </a></li>
+                                <li><a class="" href="#">Form Layouts</a></li>
+                                <li><a class="" href="#">Form Components</a></li>
+                                <li><a class="" href="#">Form Wizard</a></li>
+                                <li><a class="" href="#">Form Validation</a></li>
+                                <li><a class="" href="#">Dropzone File Upload </a></li>
                             </ul>
                         </li>
                         <li class="sub-menu">
                             <a href="javascript:;" class="">
-                                <i class="icon-fire"></i>
+                                <i class="icon-eur"></i>
                                 <span>Ventas</span>
                                 <span class="arrow"></span>
                             </a>
@@ -423,7 +433,7 @@
                         </li>
                         <li class="sub-menu">
                             <a href="javascript:;" class="">
-                                <i class="icon-fire"></i>
+                                <i class="icon-credit-card"></i>
                                 <span>Compras</span>
                                 <span class="arrow"></span>
                             </a>
@@ -435,38 +445,20 @@
                         </li>
                         <li class="sub-menu">
                             <a href="javascript:;" class="">
-                                <i class="icon-file-alt"></i>
-                                <span>Stock</span>
-                                <span class="arrow"></span>
-                            </a>
-                            <ul class="sub">
-                                <li><a class="" href="blank.html">Blank Page</a></li>
-                                <li><a class="" href="blog.html">Blog</a></li>
-                                <li><a class="" href="timeline.html">Timeline</a></li>
-                                <li><a class="" href="about_us.html">About Us</a></li>
-                                <li><a class="" href="contact_us.html">Contact Us</a></li>
-                            </ul>
-                        </li>
-                        <li class="sub-menu">
-                            <a href="javascript:;" class="">
-                                <i class="icon-glass"></i>
+                                <i class="icon-archive"></i>
                                 <span>Productos</span>
                                 <span class="arrow"></span>
                             </a>
                             <ul class="sub">
-                                <li><a class="" href="lock.html">Lock Screen</a></li>
-                                <li><a class="" href="invoice.html">Invoice</a></li>
-                                <li><a class="" href="pricing_tables.html">Pricing Tables</a></li>
-                                <li><a class="" href="search_result.html">Search Result</a></li>
-                                <li><a class="" href="faq.html">FAQ</a></li>
-                                <li><a class="" href="404.html">404 Error</a></li>
-                                <li><a class="" href="500.html">500 Error</a></li>
+                                <li><a class="" href="#/products">Listado</a></li>
+                                <li><a class="" href="#">Familias</a></li>
+                                <li><a class="" href="#">Gestion de stock</a></li>
                             </ul>
                         </li>
                         <li>
-                            <a class="" href="login.html">
-                                <i class="icon-user"></i>
-                                <span>Gestión de carteras</span>
+                            <a class="" href="#">
+                                <i class="icon-briefcase"></i>
+                                <span>Gestion de carteras</span>
                                 <span class="arrow"></span>
                             </a>
                             <ul class="sub">

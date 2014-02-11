@@ -1,9 +1,9 @@
-<div class="row-fluid" ng-init="readAllStaff()">
+<div class="row-fluid" ng-init="readAllProducts()">
     <div class="span12">
         <!-- BEGIN EXAMPLE TABLE widget-->
-        <div class="widget purple">
-            <div class="widget-title" id="tabla-empleados">
-                <h4><i class="icon-reorder"></i>Empleados</h4>
+        <div class="widget blue">
+            <div class="widget-title" id="tabla-productos">
+                <h4><i class="icon-reorder"></i>Productos</h4>
                 <span class="tools">
                     <a href="javascript:;" class="icon-chevron-down"></a>
                     <a href="javascript:;" class="icon-remove"></a>
@@ -31,7 +31,7 @@
                         <i class="icon-angle-down"></i>
                     </button>
                     <div id="prueba">
-                        <input id="search-field" type="search" ng-model="query" placeholder="filtrar empleados..." />
+                        <input id="search-field" type="search" ng-model="query" placeholder="filtrar productos..." />
                         <div class="lupa-icon">
                             <i class="icon-search"></i>
                         </div>
@@ -53,7 +53,7 @@
                                 <a href="#">3</a>
                             </li>
                             <li>
-                                <button ng-disabled="currentPage >= allStaff.length/pageSize.value -1" ng-click="currentPage=currentPage+1">Sig → </button>
+                                <button ng-disabled="currentPage >= allUsers.length/pageSize.value -1" ng-click="currentPage=currentPage+1">Sig → </button>
                             </li>
                         </ul>
                     </div>
@@ -64,7 +64,7 @@
                         </label>
                     </div>
                 </div>
-                Pagina actual: {{currentPage}}, Tamaño pagina: {{pageSize.value}}, Total empleados: {{allStaff.length}}
+                Pagina actual: {{currentPage}}, Tamaño pagina: {{pageSize.value}}, Total productos: {{allProducts.length}}
                 <table class="table table-bordered" id="sample_1">
                     <thead>
                         <tr>
@@ -75,29 +75,27 @@
                                 </label>
                             </th>
                             <th class="id-size">Id</th>
-                            <th class="name-size"class="hidden-phone">Nombre</th>
-                            <th class="apellido-size" class="hidden-phone">Apellido</th>
-                            <th class="name-size">Salario</th>
-                            <th class="name-size">Puesto</th>
+                            <th class="name-size"class="hidden-phone">Codigo</th>
+                            <th class="apellido-size" class="hidden-phone">Nombre</th>
+                            <th class="mail-size">Familia</th>
                             <th class="edit-size">Edit</th>
 
                         </tr>
                     </thead>
                     <tbody class="example-animate-container">
-                        <tr class="odd gradeX animate-repeat" ng-repeat="employed in allStaff | filter:query">
+                        <tr class="odd gradeX animate-repeat" ng-repeat="product in allProducts | filter:query">
                             <!--<td>
                                 <button class="btn btn-warning"><i class="icon-ok"></i></button>
                             </td>-->
                             <td id="check-size" >
-                                <input id="{{employed.id_empleado}}" class="" type="checkbox" ng-model="employed.checked"  >
-                                <label class="css-label lrg vlad" name="checkbox_vlad_lbl" for="{{employed.empleado}}">
+                                <input id="{{product.id_producto}}" class="" type="checkbox" ng-model="product.checked"  >
+                                <label class="css-label lrg vlad" name="checkbox_vlad_lbl" for="{{product.producto}}">
                                 </label>
                             </td>
-                            <td><input id="color-input" class="id-size" type="text" ng-model="employed.id_empleado" ng-disabled="employed.disabled" /></td>
-                            <td><input id="color-input" class="name-size" type="text" ng-model="employed.nombre" ng-disabled="employed.disabled" /></td>
-                            <td><input id="color-input" class="apellido-size"type="text" ng-model="employed.apellidos" ng-disabled="employed.disabled" /></td>
-                            <td><input id="color-input" class="name-size" type="text" ng-model="employed.salario" ng-disabled="employed.disabled" /></td>
-                            <td><input id="color-input" class="name-size" type="text" ng-model="employed.puesto" ng-disabled="employed.disabled" /></td>
+                            <td><input id="color-input" class="id-size" type="text" ng-model="product.id_producto" ng-disabled="product.disabled" /></td>
+                            <td><input id="color-input" class="name-size" type="text" ng-model="product.codigo_producto" ng-disabled="product.disabled" /></td>
+                            <td><input id="color-input" class="apellido-size"type="text" ng-model="product.nombre" ng-disabled="product.disabled" /></td>
+                            <td><input id="color-input" type="text" ng-model="product.familia.nombre" ng-disabled="product.disabled" /></td>
                             <td>
                                 <button class="btn btn-success"><i class="icon-eye-open"></i></button>
                                 <button class="btn btn-primary" ng-click=""><i class="icon-pencil"></i></button>

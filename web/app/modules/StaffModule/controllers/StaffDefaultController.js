@@ -13,9 +13,9 @@ angular.module('StaffModule').controller('StaffDefaultController', [
          * VARIABLES GLOBALES
          */
 
-        baseUsers = Restangular.all('Empleado');
+        baseStaff = Restangular.all('Empleado');
 
-        $scope.oneUser = {};
+        $scope.oneEmployed = {};
 
         /*
          * LEER TODOS LOS EMPLEADOS
@@ -69,7 +69,7 @@ angular.module('StaffModule').controller('StaffDefaultController', [
 
                 if (employed.checked === true) {
 
-                    idsStaff.push(employed.id_usuario);
+                    idsStaff.push(employed.id_empleado);
                 }
             });
             return idsStaff;
@@ -98,7 +98,7 @@ angular.module('StaffModule').controller('StaffDefaultController', [
 
             $scope.allStaff.forEach(function(employed) {
 
-                if (employed.id_usuario === id_employed) {
+                if (employed.id_empleado === id_employed) {
 
                     $scope.allStaff.splice($scope.allStaff.indexOf(employed), 1);
                 }
@@ -114,7 +114,7 @@ angular.module('StaffModule').controller('StaffDefaultController', [
 
                 $scope.allStaff.forEach(function(employed) {
 
-                    if (employed.id_employed === id_employed) {
+                    if (employed.id_empleado === id_employed) {
 
                         $scope.allStaff.splice($scope.allStaff.indexOf(employed), 1);
                     }

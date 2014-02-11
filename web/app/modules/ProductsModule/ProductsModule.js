@@ -29,17 +29,17 @@
  * @since 1.0
  */
 
-angular.module('UsersModule', [
+angular.module('ProductsModule', [
     'restangular'
 ])
         .config(function(RestangularProvider) {
     RestangularProvider.setBaseUrl('/PymeGestApplicationServer/api/');
     
-    RestangularProvider.addElementTransformer('Usuario', false, function(user) {
+    RestangularProvider.addElementTransformer('Producto', false, function(product) {
 
-        user.disabled = true;
-        user.checked = false;
+        product.disabled = true;
+        product.checked = false;
         
-        return user;
+        return product;
     });
 });

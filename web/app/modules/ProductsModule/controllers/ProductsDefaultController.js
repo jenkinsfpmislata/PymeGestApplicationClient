@@ -1,6 +1,6 @@
 /*
  * Project: PymeGestApplicationClient
- * File: UsersDefaultController.js
+ * File: ProductsDefaultController.js
  * Date: 11-feb-2014
  * Encoding: UTF-8
  * License: default
@@ -29,7 +29,7 @@
  * @since 1.0
  */
 
-angular.module('UsersModule').controller('UsersDefaultController', [
+angular.module('ProductsModule').controller('ProductsDefaultController', [
     '$scope',
     'Restangular',
     function($scope, Restangular) {
@@ -38,20 +38,20 @@ angular.module('UsersModule').controller('UsersDefaultController', [
          * VARIABLES GLOBALES
          */
 
-        baseUsers = Restangular.all('Usuario');
+        baseProducts = Restangular.all('Producto');
 
-        $scope.oneUser = {};
+        $scope.oneProduct = {};
 
         /*
          * LEER TODOS LOS USUARIOS
          */
 
-        $scope.readAllUsers = function() {
+        $scope.readAllProducts = function() {
 
             $scope.selection = "table";
 
-            baseUsers.getList().then(function(users) {
-                $scope.allUsers = users;
+            baseProducts.getList().then(function(products) {
+                $scope.allProducts = products;
             });
 
         };
@@ -59,7 +59,7 @@ angular.module('UsersModule').controller('UsersDefaultController', [
         $scope.showTable = function() {
 
             $scope.selection = "table";
-            $scope.oneUser = {};
+            $scope.oneProduct = {};
 
         };
         $scope.showForm = function() {
@@ -75,41 +75,41 @@ angular.module('UsersModule').controller('UsersDefaultController', [
 
         $scope.numberOfPages = function() {
 
-            return Math.ceil($scope.allUsers.length / $scope.pageSize);
+            return Math.ceil($scope.allProducts.length / $scope.pageSize);
         };
 
         $scope.checkAll = function() {
 
-            $scope.allUsers.forEach(function(user) {
+            $scope.allProducts.forEach(function(product) {
 
-                user.checked = allCheckboxes.checked;
+                product.checked = allCheckboxes.checked;
             });
         };
 
         $scope.findCheckeds = function() {
 
-            var idsUsuarios = [];
+            var idsProductos = [];
 
-            $scope.allUsers.forEach(function(user) {
+            $scope.allProducts.forEach(function(product) {
 
-                if (user.checked === true) {
+                if (product.checked === true) {
 
-                    idsUsuarios.push(user.id_usuario);
+                    idsProductos.push(product.id_producto);
                 }
             });
-            return idsUsuarios;
+            return idsProductos;
         };
 
         /*
          * LEER UN USUARIO
          */
 
-        $scope.readUser = function(id_user) {
+        $scope.readProduct = function(id_product) {
 
-            var baseUser = Restangular.one('Usuario', id_user);
+            var baseProduct = Restangular.one('Producto', id_product);
 
-            baseUser.getList().then(function(user) {
-                $scope.User = user;
+            baseProduct.getList().then(function(product) {
+                $scope.Product = product;
             });
         };
 
@@ -117,31 +117,31 @@ angular.module('UsersModule').controller('UsersDefaultController', [
          * BORRAR USUARIOS
          */
 
-        $scope.deleteUser = function(id_user) {
+        $scope.deleteProduct = function(id_product) {
 
-            Restangular.one('Usuario', id_user).remove();
+            Restangular.one('Producto', id_product).remove();
 
-            $scope.allUsers.forEach(function(user) {
+            $scope.allProducts.forEach(function(product) {
 
-                if (user.id_usuario === id_user) {
+                if (product.id_producto === id_product) {
 
-                    $scope.allUsers.splice($scope.allUsers.indexOf(user), 1);
+                    $scope.allProducts.splice($scope.allProducts.indexOf(product), 1);
                 }
             });
 
         };
 
-        $scope.deleteUsers = function(ids_users) {
+        $scope.deleteUsers = function(ids_products) {
 
-            Restangular.one('Usuario', ids_users.toString()).remove();
+            Restangular.one('Producto', ids_products.toString()).remove();
 
-            ids_users.forEach(function(id_user) {
+            ids_products.forEach(function(id_product) {
 
-                $scope.allUsers.forEach(function(user) {
+                $scope.allProducts.forEach(function(product) {
 
-                    if (user.id_usuario === id_user) {
+                    if (product.id_producto === id_product) {
 
-                        $scope.allUsers.splice($scope.allUsers.indexOf(user), 1);
+                        $scope.allProducts.splice($scope.allUsers.indexOf(product), 1);
                     }
                 });
 
@@ -152,17 +152,15 @@ angular.module('UsersModule').controller('UsersDefaultController', [
          * INSERTA UN USUARIO
          */
 
-        $scope.insertUser = function() {
+        $scope.insertProduct = function() {
 
-            var baseUsers = Restangular.all('Usuario');
+            var baseProducts = Restangular.all('Producto');
 
-            baseUsers.post($scope.oneUser);
+            baseProducts.post($scope.oneProduct);
 
-            //$scope.allUsers.push($scope.oneUser);
+            $scope.oneProduct = {};
 
-            $scope.oneUser = {};
-
-            $scope.readAllUsers();
+            $scope.readAllProducts();
         };
 
 
@@ -170,10 +168,10 @@ angular.module('UsersModule').controller('UsersDefaultController', [
          * EDITAR UN USUARIO
          */
 
-        $scope.editUser = function(id_user) {
+        $scope.editProduct = function(id_product) {
 
-            var user = Restangular.one('Usuario', id_user).get();
-            alert(user.nombre);
+            var product = Restangular.one('Usuario', id_product).get();
+            alert(product.nombre);
             //user.nombre = 'Sepia';
             //user.put();
             //$scope.selection = "form";
