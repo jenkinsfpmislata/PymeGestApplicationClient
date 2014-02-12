@@ -1,5 +1,5 @@
-<div class="row-fluid" ng-init="readAllProducts()">
-    <div class="span12">
+<div class="row-fluid" ng-init="readAllProducts()" ng-switch on="selection">
+    <div class="span12" ng-switch-when="table">
         <!-- BEGIN EXAMPLE TABLE widget-->
         <div class="widget blue">
             <div class="widget-title" id="tabla-productos">
@@ -17,13 +17,13 @@
                     <button id="add-new-button" class="btn green">
                         Guardar <i class="icon-save"></i>
                     </button>
-                    <button id="add-new-button" class="btn green" ng-click="">
+                    <button id="add-new-button" class="btn green" ng-click="showForm()">
                         Añadir Nuevo <i class="icon-plus"></i> 
                     </button>
                     <button id="edit-button" class="btn green" ng-click="">
                         Editar <i class="icon-pencil"></i>
                     </button>
-                    <button id="delete-buton" class="btn green" ng-click="" >
+                    <button id="delete-buton" class="btn green" ng-click="deleteProducts(findCheckeds())" >
                         Eliminar <i class="icon-trash"></i>
                     </button>
                     <button class="btn dropdown-toggle" data-toggle="dropdown">
@@ -98,8 +98,8 @@
                             <td><input id="color-input" type="text" ng-model="product.familia.nombre" ng-disabled="product.disabled" /></td>
                             <td>
                                 <button class="btn btn-success"><i class="icon-eye-open"></i></button>
-                                <button class="btn btn-primary" ng-click=""><i class="icon-pencil"></i></button>
-                                <button class="btn btn-danger" ng-click=""><i class="icon-trash "></i></button>
+                                <button class="btn btn-primary" ng-click="editProduct(product.id_producto)"><i class="icon-pencil"></i></button>
+                                <button class="btn btn-danger" ng-click="deleteProduct(product.id_producto)"><i class="icon-trash "></i></button>
                             </td>
 
                         </tr>
@@ -107,5 +107,53 @@
                 </table>
             </div>
         </div>
+    </div>
+
+    <!-- ------------------------------------------------FORMULARIO-------------------------------------------------- -->
+
+    <div id="form_position" class="span6" ng-switch-when="form">
+        <!-- BEGIN SAMPLE FORMPORTLET-->
+        <div id="width-form" class="widget blue">
+            <div class="widget-title">
+                <h4><i class="icon-reorder"></i> Producto </h4>
+                <span class="tools">
+                    <a href="javascript:;" class="icon-chevron-down"></a>
+                    <a href="javascript:;" class="icon-remove"></a>
+                </span>
+            </div>
+            <div class="widget-body">
+                <!-- BEGIN FORM-->
+                <form action="" class="form-horizontal" method="POST">
+                    <div class="control-group">
+                        <label class="control-label">Codigo</label>
+                        <div class="controls">
+                            <input type="text" class="input-large" ng-model="oneProduct.codigo_producto" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">Nombre</label>
+                        <div class="controls">
+                            <input type="text" class="input-large" ng-model="oneProduct.nombre" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">Familia</label>
+                        <div class="controls">
+                            <select>
+                                <option ng-repeat="oneProduct in allProducts" value ="{{oneProduct.familia.nombre}}">{{oneProduct.familia.nombre}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-primary" ng-click="insertProduct()" >Aceptar</button>
+                        <button type="button" class="btn" ng-click="showTable()">
+                            Volver
+                        </button>
+                    </div>
+                </form>
+                <!-- END FORM-->
+            </div>
+        </div>
+        <!-- END SAMPLE FORM PORTLET-->
     </div>
 </div>

@@ -1,5 +1,5 @@
-<div class="row-fluid" ng-init="readAllStaff()">
-    <div class="span12">
+<div class="row-fluid" ng-init="readAllStaff()" ng-switch on="selection">
+    <div class="span12" ng-switch-when="table">
         <!-- BEGIN EXAMPLE TABLE widget-->
         <div class="widget purple">
             <div class="widget-title" id="tabla-empleados">
@@ -17,13 +17,13 @@
                     <button id="add-new-button" class="btn green">
                         Guardar <i class="icon-save"></i>
                     </button>
-                    <button id="add-new-button" class="btn green" ng-click="">
+                    <button id="add-new-button" class="btn green" ng-click="showForm()">
                         Añadir Nuevo <i class="icon-plus"></i> 
                     </button>
                     <button id="edit-button" class="btn green" ng-click="">
                         Editar <i class="icon-pencil"></i>
                     </button>
-                    <button id="delete-buton" class="btn green" ng-click="" >
+                    <button id="delete-buton" class="btn green" ng-click="deleteEmployed(findCheckeds())" >
                         Eliminar <i class="icon-trash"></i>
                     </button>
                     <button class="btn dropdown-toggle" data-toggle="dropdown">
@@ -109,5 +109,63 @@
                 </table>
             </div>
         </div>
+    </div>
+    
+    <div id="form_position" class="span6" ng-switch-when="form">
+        <!-- BEGIN SAMPLE FORMPORTLET-->
+        <div id="width-form" class="widget purple">
+            <div class="widget-title">
+                <h4><i class="icon-reorder"></i> Empleado </h4>
+                <span class="tools">
+                    <a href="javascript:;" class="icon-chevron-down"></a>
+                    <a href="javascript:;" class="icon-remove"></a>
+                </span>
+            </div>
+            <div class="widget-body">
+                <!-- BEGIN FORM-->
+                <form action="" class="form-horizontal" method="POST">
+                    <div class="control-group">
+                        <label class="control-label">Nombre</label>
+                        <div class="controls">
+                            <input type="text" class="input-large" ng-model="oneEmployed.nombre" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">Apellido</label>
+                        <div class="controls">
+                            <input type="text" class="input-large" ng-model="oneEmployed.apellidos" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">Salario</label>
+                        <div class="controls">
+                            <input type="text" class="input-large" ng-model="oneEmployed.salario" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">Puesto</label>
+                        <div class="controls">
+                            <input type="text" class="input-large" ng-model="oneEmployed.puesto" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">Correo electronico</label>
+                        <div class="controls">
+                            <div class="input-prepend">
+                                <span class="add-on">@</span><input class="" type="text" ng-model="oneEmployed.correo_electronico" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" id="boton-empleados" class="btn btn-success" ng-click="insertEmployed()" >Aceptar</button>
+                        <button type="button" class="btn" ng-click="showTable()">
+                            Volver
+                        </button>
+                    </div>
+                </form>
+                <!-- END FORM-->
+            </div>
+        </div>
+        <!-- END SAMPLE FORM PORTLET-->
     </div>
 </div>

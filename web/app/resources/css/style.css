@@ -98,7 +98,7 @@ div, input, select, textarea, span, img, table, td, th, p, a, button, ul, li {
 }
 
 .btn-primary{
-    background: #2fade7;
+    background: #4A8BC2;
 }
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, .btn-primary[disabled], .btn-group.open .btn-primary.dropdown-toggle {
     background-color: #3492c9;

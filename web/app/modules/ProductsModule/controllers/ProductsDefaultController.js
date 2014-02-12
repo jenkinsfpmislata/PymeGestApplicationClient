@@ -131,7 +131,7 @@ angular.module('ProductsModule').controller('ProductsDefaultController', [
 
         };
 
-        $scope.deleteUsers = function(ids_products) {
+        $scope.deleteProducts = function(ids_products) {
 
             Restangular.one('Producto', ids_products.toString()).remove();
 
