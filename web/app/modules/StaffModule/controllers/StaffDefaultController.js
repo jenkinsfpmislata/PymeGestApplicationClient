@@ -151,5 +151,15 @@ angular.module('StaffModule').controller('StaffDefaultController', [
             //user.put();
             //$scope.selection = "form";
         };
+        
+        /*
+         * Lectura de puestos para insertar empleado
+         */
+        
+            $scope.selection = "table";
+            baseJobs = Restangular.all('Puesto');
+            baseJobs.getList().then(function(jobs) {
+                $scope.allJobs = jobs;
+            });
     }
 ]);

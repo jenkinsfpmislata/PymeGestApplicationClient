@@ -141,7 +141,7 @@ angular.module('ProductsModule').controller('ProductsDefaultController', [
 
                     if (product.id_producto === id_product) {
 
-                        $scope.allProducts.splice($scope.allUsers.indexOf(product), 1);
+                        $scope.allProducts.splice($scope.allProducts.indexOf(product), 1);
                     }
                 });
 
@@ -170,11 +170,21 @@ angular.module('ProductsModule').controller('ProductsDefaultController', [
 
         $scope.editProduct = function(id_product) {
 
-            var product = Restangular.one('Usuario', id_product).get();
+            var product = Restangular.one('Producto', id_product).get();
             alert(product.nombre);
             //user.nombre = 'Sepia';
             //user.put();
             //$scope.selection = "form";
         };
+        
+        /*
+         * Lectura de familias para insertar producto
+         */
+
+            $scope.selection = "table";
+            baseFamilies = Restangular.all('Familia');
+            baseFamilies.getList().then(function(families) {
+                $scope.allFamilies = families;
+            });
     }
 ]);

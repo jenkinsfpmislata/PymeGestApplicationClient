@@ -3,7 +3,9 @@ angular.module('PymeGestApp', [
     'ngResource',
     'UsersModule',
     'ProductsModule',
-    'StaffModule'
+    'StaffModule',
+    'FamiliesModule',
+    'JobsModule'
 ]).
         config(['$routeProvider',
     function($routeProvider) {
@@ -24,6 +26,14 @@ angular.module('PymeGestApp', [
                 when('/clients', {
             templateUrl: 'app/modules/ClientsModule/resources/views/Clients.html',
             controller: 'ClientsDefaultController'
+        }).
+                when('/families', {
+            templateUrl: 'app/modules/FamiliesModule/resources/views/Families.html',
+            controller: 'FamiliesDefaultController'
+        }).
+                when('/job', {
+            templateUrl: 'app/modules/JobsModule/resources/views/Jobs.html',
+            controller: 'JobsDefaultController'
         }).
                 otherwise({
             redirectTo: '/users'

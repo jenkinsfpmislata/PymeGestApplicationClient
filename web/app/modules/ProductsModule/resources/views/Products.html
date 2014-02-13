@@ -140,8 +140,12 @@
                         <label class="control-label">Familia</label>
                         <div class="controls">
                             <select>
-                                <option ng-repeat="oneProduct in allProducts" value ="{{oneProduct.familia.nombre}}">{{oneProduct.familia.nombre}}</option>
+                                <option ng-repeat="family in allFamilies" value ="{{family.id_familia}}">{{family.nombre}}</option>
                             </select>
+                            <input type="text" class="input-large" ng-model="oneProduct.familia.id_familia" />
+                            <!--<select ng-model="oneProduct.familia.id_familia" ng-options="family as family.nombre for family in allFamilies">
+                                <option value="">Ninguna familia seleccionada</option>
+                            </select>-->
                         </div>
                     </div>
                     <div class="form-actions">

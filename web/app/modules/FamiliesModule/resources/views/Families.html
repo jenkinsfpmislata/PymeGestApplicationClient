@@ -1,9 +1,9 @@
-<div class="row-fluid" ng-init="readAllStaff()" ng-switch on="selection">
+<div class="row-fluid" ng-init="readAllFamilies()" ng-switch on="selection">
     <div class="span12" ng-switch-when="table">
         <!-- BEGIN EXAMPLE TABLE widget-->
-        <div class="widget purple">
-            <div class="widget-title" id="tabla-empleados">
-                <h4><i class="icon-reorder"></i>Empleados</h4>
+        <div class="widget yellow">
+            <div class="widget-title">
+                <h4><i class="icon-reorder"></i>Familias</h4>
                 <span class="tools">
                     <a href="javascript:;" class="icon-chevron-down"></a>
                     <a href="javascript:;" class="icon-remove"></a>
@@ -23,7 +23,7 @@
                     <button id="edit-button" class="btn green" ng-click="">
                         Editar <i class="icon-pencil"></i>
                     </button>
-                    <button id="delete-buton" class="btn green" ng-click="deleteEmployed(findCheckeds())" >
+                    <button id="delete-buton" class="btn green" ng-click="deleteFamilies(findCheckeds())" >
                         Eliminar <i class="icon-trash"></i>
                     </button>
                     <button class="btn dropdown-toggle" data-toggle="dropdown">
@@ -31,7 +31,7 @@
                         <i class="icon-angle-down"></i>
                     </button>
                     <div id="prueba">
-                        <input id="search-field" type="search" ng-model="query" placeholder="filtrar empleados..." />
+                        <input id="search-field" type="search" ng-model="query" placeholder="filtrar familias..." />
                         <div class="lupa-icon">
                             <i class="icon-search"></i>
                         </div>
@@ -53,7 +53,7 @@
                                 <a href="#">3</a>
                             </li>
                             <li>
-                                <button ng-disabled="currentPage >= allStaff.length/pageSize.value -1" ng-click="currentPage=currentPage+1">Sig → </button>
+                                <button ng-disabled="currentPage >= allFamilies.length/pageSize.value -1" ng-click="currentPage=currentPage+1">Sig → </button>
                             </li>
                         </ul>
                     </div>
@@ -64,7 +64,7 @@
                         </label>
                     </div>
                 </div>
-                Pagina actual: {{currentPage}}, Tamaño pagina: {{pageSize.value}}, Total empleados: {{allStaff.length}}
+                Pagina actual: {{currentPage}}, Tamaño pagina: {{pageSize.value}}, Total familias: {{allStaff.length}}
                 <table class="table table-bordered" id="sample_1">
                     <thead>
                         <tr>
@@ -76,32 +76,28 @@
                             </th>
                             <th class="id-size">Id</th>
                             <th class="name-size"class="hidden-phone">Nombre</th>
-                            <th class="apellido-size" class="hidden-phone">Apellido</th>
-                            <th class="name-size">Salario</th>
-                            <th class="name-size">Puesto</th>
+                            <th class="apellido-size" class="hidden-phone">Descripcion</th>
                             <th class="edit-size">Edit</th>
 
                         </tr>
                     </thead>
                     <tbody class="example-animate-container">
-                        <tr class="odd gradeX animate-repeat" ng-repeat="employed in allStaff | filter:query">
+                        <tr class="odd gradeX animate-repeat" ng-repeat="family in allFamilies | filter:query">
                             <!--<td>
                                 <button class="btn btn-warning"><i class="icon-ok"></i></button>
                             </td>-->
                             <td id="check-size" >
-                                <input id="{{employed.id_empleado}}" class="" type="checkbox" ng-model="employed.checked"  >
-                                <label class="css-label lrg vlad" name="checkbox_vlad_lbl" for="{{employed.empleado}}">
+                                <input id="{{family.id_familia}}" class="" type="checkbox" ng-model="family.checked"  >
+                                <label class="css-label lrg vlad" name="checkbox_vlad_lbl" for="{{family.id_familia}}">
                                 </label>
                             </td>
-                            <td><input id="color-input" class="id-size" type="text" ng-model="employed.id_empleado" ng-disabled="employed.disabled" /></td>
-                            <td><input id="color-input" class="name-size" type="text" ng-model="employed.nombre" ng-disabled="employed.disabled" /></td>
-                            <td><input id="color-input" class="apellido-size"type="text" ng-model="employed.apellidos" ng-disabled="employed.disabled" /></td>
-                            <td><input id="color-input" class="name-size" type="text" ng-model="employed.salario" ng-disabled="employed.disabled" /></td>
-                            <td><input id="color-input" class="name-size" type="text" ng-model="employed.puestos.nombre" ng-disabled="employed.disabled" /></td>
+                            <td><input id="color-input" class="id-size" type="text" ng-model="family.id_familia" ng-disabled="family.disabled" /></td>
+                            <td><input id="color-input" class="name-size" type="text" ng-model="family.nombre" ng-disabled="family.disabled" /></td>
+                            <td><input id="color-input" class="apellido-size"type="text" ng-model="family.descripcion" ng-disabled="family.disabled" /></td>
                             <td>
                                 <button class="btn btn-success"><i class="icon-eye-open"></i></button>
-                                <button class="btn btn-primary" ng-click="editEmployed(employed.id_empleado)"><i class="icon-pencil"></i></button>
-                                <button class="btn btn-danger" ng-click="deleteEmployed(employed.id_empleado)"><i class="icon-trash "></i></button>
+                                <button class="btn btn-primary" ng-click="editFamily(family.id_familia)"><i class="icon-pencil"></i></button>
+                                <button class="btn btn-danger" ng-click="deleteFamily(family.id_familia)"><i class="icon-trash"></i></button>
                             </td>
 
                         </tr>
@@ -111,11 +107,13 @@
         </div>
     </div>
     
+    
+    
     <div id="form_position" class="span6" ng-switch-when="form">
         <!-- BEGIN SAMPLE FORMPORTLET-->
-        <div id="width-form" class="widget purple">
+        <div id="width-form" class="widget yellow">
             <div class="widget-title">
-                <h4><i class="icon-reorder"></i> Empleado </h4>
+                <h4><i class="icon-reorder"></i> Familia </h4>
                 <span class="tools">
                     <a href="javascript:;" class="icon-chevron-down"></a>
                     <a href="javascript:;" class="icon-remove"></a>
@@ -127,43 +125,18 @@
                     <div class="control-group">
                         <label class="control-label">Nombre</label>
                         <div class="controls">
-                            <input type="text" class="input-large" ng-model="oneEmployed.nombre" />
+                            <input type="text" class="input-large" ng-model="oneFamily.nombre" />
                         </div>
                     </div>
                     <div class="control-group">
-                        <label class="control-label">Apellido</label>
+                        <label class="control-label">Descripcion</label>
                         <div class="controls">
-                            <input type="text" class="input-large" ng-model="oneEmployed.apellidos" />
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label">Salario</label>
-                        <div class="controls">
-                            <input type="text" class="input-large" ng-model="oneEmployed.salario" />
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label">Puesto</label>
-                        <div class="controls">
-                            <select>
-                                <option ng-repeat="puesto in allJobs" value ="{{puesto.id_puesto}}">{{puesto.nombre}}</option>
-                            </select>
-                            <input type="text" class="input-large" ng-model="oneEmployed.puestos.id_puesto" />
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label">Correo electronico</label>
-                        <div class="controls">
-                            <div class="input-prepend">
-                                <span class="add-on">@</span><input class="" type="text" ng-model="oneEmployed.correo_electronico" />
-                            </div>
+                            <input type="text" class="input-large" ng-model="oneFamily.descripcion" />
                         </div>
                     </div>
                     <div class="form-actions">
-                        <button type="button" id="boton-empleados" class="btn btn-success" ng-click="insertEmployed()" >Aceptar</button>
-                        <button type="button" class="btn" ng-click="showTable()">
-                            Volver
-                        </button>
+                        <button type="button" id="boton-familias" class="btn btn-success" ng-click="insertFamily()" >Aceptar</button>
+                        <button type="button" class="btn" ng-click="showTable()">Volver</button>
                     </div>
                 </form>
                 <!-- END FORM-->
