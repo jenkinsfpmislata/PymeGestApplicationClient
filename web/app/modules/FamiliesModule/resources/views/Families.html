@@ -144,4 +144,40 @@
         </div>
         <!-- END SAMPLE FORM PORTLET-->
     </div>
+    
+        <div id="form_position" class="span6" ng-switch-when="edition">
+        <!-- BEGIN SAMPLE FORMPORTLET-->
+        <div id="width-form" class="widget yellow">
+            <div class="widget-title">
+                <h4><i class="icon-reorder"></i> Familia </h4>
+                <span class="tools">
+                    <a href="javascript:;" class="icon-chevron-down"></a>
+                    <a href="javascript:;" class="icon-remove"></a>
+                </span>
+            </div>
+            <div class="widget-body">
+                <!-- BEGIN FORM-->
+                <form action="" class="form-horizontal" method="POST">
+                    <div class="control-group">
+                        <label class="control-label">Nombre</label>
+                        <div class="controls">
+                            <input type="text" class="input-large" ng-model="oneFamilyEdit.nombre" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">Descripcion</label>
+                        <div class="controls">
+                            <input type="text" class="input-large" ng-model="oneFamilyEdit.descripcion" />
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" id="boton-familias" class="btn btn-success" ng-click="editFamily(oneFamilyEdit.id_familia)" >Aceptar</button>
+                        <button type="button" class="btn" ng-click="showTable()">Volver</button>
+                    </div>
+                </form>
+                <!-- END FORM-->
+            </div>
+        </div>
+        <!-- END SAMPLE FORM PORTLET-->
+    </div>
 </div>

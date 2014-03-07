@@ -41,6 +41,8 @@ angular.module('JobsModule').controller('JobsDefaultController', [
         baseJobs = Restangular.all('Puesto');
 
         $scope.oneJob = {};
+        
+        $scope.oneJobEdit = {};
 
         /*
          * LEER TODOS LOS USUARIOS
@@ -54,7 +56,10 @@ angular.module('JobsModule').controller('JobsDefaultController', [
                 $scope.allJobs = jobs;
             });
 
-        };
+        }, error (function() {
+            
+            alert("Error en la lectura");
+        });
 
         $scope.showTable = function() {
 
@@ -111,7 +116,10 @@ angular.module('JobsModule').controller('JobsDefaultController', [
             baseJob.getList().then(function(job) {
                 $scope.Job = job;
             });
-        };
+        }, error (function() {
+            
+            alert("Error en la lectura");
+        });
 
         /*
          * BORRAR USUARIOS
@@ -129,7 +137,10 @@ angular.module('JobsModule').controller('JobsDefaultController', [
                 }
             });
 
-        };
+        }, error (function() {
+            
+            alert("Error en borrado");
+        });
 
         $scope.deleteJobs = function(ids_jobs) {
 
@@ -146,7 +157,10 @@ angular.module('JobsModule').controller('JobsDefaultController', [
                 });
 
             });
-        };
+        }, error (function() {
+            
+            alert("Error en borrado");
+        });
 
         /*
          * INSERTA UN USUARIO
@@ -161,7 +175,10 @@ angular.module('JobsModule').controller('JobsDefaultController', [
             $scope.oneJob = {};
 
             $scope.readAllJobs();
-        };
+        }, error (function() {
+            
+            alert("Error al insertar");
+        });
 
 
         /*
@@ -170,11 +187,18 @@ angular.module('JobsModule').controller('JobsDefaultController', [
 
         $scope.editJob = function(id_job) {
 
-            var job = Restangular.one('Puesto', id_job).get();
-            alert(job.nombre);
-            //user.nombre = 'Sepia';
-            //user.put();
-            //$scope.selection = "form";
-        };
+            $scope.selection = "edition";
+            
+            var job = Restangular.one('Familia', id_job).get();
+            
+            job = $scope.oneJobEdit;
+            
+            job.put();
+            
+            $scope.readAllJobs();
+        }, error (function() {
+            
+            alert("Error al editar");
+        });
     }
 ]);

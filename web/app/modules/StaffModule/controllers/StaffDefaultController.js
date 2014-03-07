@@ -16,6 +16,8 @@ angular.module('StaffModule').controller('StaffDefaultController', [
         baseStaff = Restangular.all('Empleado');
 
         $scope.oneEmployed = {};
+        
+        $scope.oneEmployedEdit = {};
 
         /*
          * LEER TODOS LOS EMPLEADOS
@@ -144,22 +146,17 @@ angular.module('StaffModule').controller('StaffDefaultController', [
          */
 
         $scope.editEmployed = function(id_employed) {
-
-            var employed = Restangular.one('Empleado', id_employed).get();
-            alert(employed.nombre);
-            //user.nombre = 'Sepia';
-            //user.put();
-            //$scope.selection = "form";
+            
+            $scope.selection = "edition";
+            
+            var employed = Restangular.one('Familia', id_employed).get();
+            
+            employed = $scope.oneEmployedEdit;
+            
+            employed.put();
+            
+            $scope.readAllStaff();
+            
         };
-        
-        /*
-         * Lectura de puestos para insertar empleado
-         */
-        
-            $scope.selection = "table";
-            baseJobs = Restangular.all('Puesto');
-            baseJobs.getList().then(function(jobs) {
-                $scope.allJobs = jobs;
-            });
     }
 ]);

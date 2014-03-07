@@ -41,6 +41,8 @@ angular.module('ProductsModule').controller('ProductsDefaultController', [
         baseProducts = Restangular.all('Producto');
 
         $scope.oneProduct = {};
+        
+        $scope.oneProductEdit = {};
 
         /*
          * LEER TODOS LOS USUARIOS
@@ -54,7 +56,10 @@ angular.module('ProductsModule').controller('ProductsDefaultController', [
                 $scope.allProducts = products;
             });
 
-        };
+        }, error (function() {
+            
+            alert("Error en la lectura");
+        });
 
         $scope.showTable = function() {
 
@@ -101,7 +106,7 @@ angular.module('ProductsModule').controller('ProductsDefaultController', [
         };
 
         /*
-         * LEER UN USUARIO
+         * LEER UN PRODUCTO
          */
 
         $scope.readProduct = function(id_product) {
@@ -111,10 +116,13 @@ angular.module('ProductsModule').controller('ProductsDefaultController', [
             baseProduct.getList().then(function(product) {
                 $scope.Product = product;
             });
-        };
+        }, error (function() {
+            
+            alert("Error en la lectura");
+        });
 
         /*
-         * BORRAR USUARIOS
+         * BORRAR PRODUCTO
          */
 
         $scope.deleteProduct = function(id_product) {
@@ -129,7 +137,10 @@ angular.module('ProductsModule').controller('ProductsDefaultController', [
                 }
             });
 
-        };
+        }, error (function() {
+            
+            alert("Error en borrado");
+        });
 
         $scope.deleteProducts = function(ids_products) {
 
@@ -146,10 +157,13 @@ angular.module('ProductsModule').controller('ProductsDefaultController', [
                 });
 
             });
-        };
+        }, error (function() {
+            
+            alert("Error en borrado");
+        });
 
         /*
-         * INSERTA UN USUARIO
+         * INSERTA UN PRODUCTO
          */
 
         $scope.insertProduct = function() {
@@ -161,30 +175,30 @@ angular.module('ProductsModule').controller('ProductsDefaultController', [
             $scope.oneProduct = {};
 
             $scope.readAllProducts();
-        };
+        }, error (function() {
+            
+            alert("Error al insertar");
+        });
 
 
         /*
-         * EDITAR UN USUARIO
+         * EDITAR UN PRODUCTO
          */
 
         $scope.editProduct = function(id_product) {
-
-            var product = Restangular.one('Producto', id_product).get();
-            alert(product.nombre);
-            //user.nombre = 'Sepia';
-            //user.put();
-            //$scope.selection = "form";
-        };
-        
-        /*
-         * Lectura de familias para insertar producto
-         */
-
-            $scope.selection = "table";
-            baseFamilies = Restangular.all('Familia');
-            baseFamilies.getList().then(function(families) {
-                $scope.allFamilies = families;
-            });
+            
+            $scope.selection = "edition";
+            
+            var product = Restangular.one('Familia', id_product).get();
+            
+            product = $scope.oneProductEdit;
+            
+            product.put();
+            
+            $scope.readAllProducts();
+        }, error (function() {
+            
+            alert("Error al editar");
+        });
     }
 ]);

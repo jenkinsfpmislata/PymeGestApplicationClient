@@ -41,12 +41,14 @@ angular.module('UsersModule').controller('UsersDefaultController', [
         baseUsers = Restangular.all('Usuario');
 
         $scope.oneUser = {};
+        
+        $scope.oneUserEdit = {};
 
         /*
-         * LEER TODOS LOS USUARIOS
+         * LEER TODOS LOS EMPLEADOS
          */
 
-        $scope.readAllUsers = function() {
+        $scope.readAllStaff = function() {
 
             $scope.selection = "table";
 
@@ -111,7 +113,10 @@ angular.module('UsersModule').controller('UsersDefaultController', [
             baseUser.getList().then(function(user) {
                 $scope.User = user;
             });
-        };
+        }, error (function() {
+            
+            alert("Error en la lectura");
+        });
 
         /*
          * BORRAR USUARIOS
@@ -129,7 +134,10 @@ angular.module('UsersModule').controller('UsersDefaultController', [
                 }
             });
 
-        };
+        }, error (function() {
+            
+            alert("Error en borrado");
+        });
 
         $scope.deleteUsers = function(ids_users) {
 
@@ -146,7 +154,10 @@ angular.module('UsersModule').controller('UsersDefaultController', [
                 });
 
             });
-        };
+        }, error (function() {
+            
+            alert("Error en borrado");
+        });
 
         /*
          * INSERTA UN USUARIO
@@ -158,12 +169,13 @@ angular.module('UsersModule').controller('UsersDefaultController', [
 
             baseUsers.post($scope.oneUser);
 
-            //$scope.allUsers.push($scope.oneUser);
-
             $scope.oneUser = {};
 
             $scope.readAllUsers();
-        };
+        }, error (function() {
+            
+            alert("Error insertando");
+        });
 
 
         /*
@@ -172,11 +184,18 @@ angular.module('UsersModule').controller('UsersDefaultController', [
 
         $scope.editUser = function(id_user) {
 
-            var user = Restangular.one('Usuario', id_user).get();
-            alert(user.nombre);
-            //user.nombre = 'Sepia';
-            //user.put();
-            //$scope.selection = "form";
-        };
+            $scope.selection = "edition";
+            
+            var user = Restangular.one('Familia', id_user).get();
+            
+            user = $scope.oneUserEdit;
+            
+            user.put();
+            
+            $scope.readAllUsers();
+        }, error (function() {
+            
+            alert("Error editando");
+        });
     }
 ]);

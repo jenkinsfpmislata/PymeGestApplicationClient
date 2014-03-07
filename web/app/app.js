@@ -38,4 +38,19 @@ angular.module('PymeGestApp', [
                 otherwise({
             redirectTo: '/users'
         });
-    }]);
+    }]).controller('LoginCtrl', function($scope, $http) {
+    
+    $scope.login = null;
+    
+    $scope.incioSesion = function() {
+        
+        $http.post("/PymeGestApplicationServer/api/Session", $scope.login).success(function(result) {
+            
+            window.location = "index.html";
+            
+        }).error (function() {
+            
+            alert("Contraseña o usuario incorrectos");
+        });
+    };
+});

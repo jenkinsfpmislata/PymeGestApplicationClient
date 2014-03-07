@@ -41,6 +41,8 @@ angular.module('FamiliesModule').controller('FamiliesDefaultController', [
         baseFamilies = Restangular.all('Familia');
 
         $scope.oneFamily = {};
+        
+        $scope.oneFamilyEdit = {};
 
         /*
          * LEER TODOS LOS CLIENTES
@@ -55,7 +57,10 @@ angular.module('FamiliesModule').controller('FamiliesDefaultController', [
             });
             
 
-        };
+        }, error (function() {
+            
+            alert("Error en la lectura");
+        });
 
         $scope.showTable = function() {
 
@@ -112,7 +117,10 @@ angular.module('FamiliesModule').controller('FamiliesDefaultController', [
             baseFamilies.getList().then(function(family) {
                 $scope.Family = family;
             });
-        };
+        }, error (function() {
+            
+            alert("Error en la lectura");
+        });
 
         /*
          * BORRAR CLIENTES
@@ -130,7 +138,10 @@ angular.module('FamiliesModule').controller('FamiliesDefaultController', [
                 }
             });
 
-        };
+        }, error (function() {
+            
+            alert("Error en borrado");
+        });
 
         $scope.deleteFamilies = function(ids_families) {
 
@@ -147,7 +158,10 @@ angular.module('FamiliesModule').controller('FamiliesDefaultController', [
                 });
 
             });
-        };
+        }, error (function() {
+            
+            alert("Error en borrado");
+        });
 
         /*
          * INSERTA UN CLIENTE
@@ -162,7 +176,10 @@ angular.module('FamiliesModule').controller('FamiliesDefaultController', [
             $scope.oneFamily = {};
 
             $scope.readAllFamilies();
-        };
+        }, error (function() {
+            
+            alert("Error al insertar");
+        });
 
 
         /*
@@ -170,12 +187,20 @@ angular.module('FamiliesModule').controller('FamiliesDefaultController', [
          */
 
         $scope.editFamily = function(id_familia) {
-
+            
+            $scope.selection = "edition";
+            
             var family = Restangular.one('Familia', id_familia).get();
-            alert(family.nombre);
-            //user.nombre = 'Sepia';
-            //user.put();
-            //$scope.selection = "form";
-        };
+            
+            family = $scope.oneFamilyEdit;
+            
+            family.put();
+            
+            $scope.readAllFamilies();
+            
+        }, error (function() {
+            
+            alert("Error al editar");
+        });
     }
 ]);

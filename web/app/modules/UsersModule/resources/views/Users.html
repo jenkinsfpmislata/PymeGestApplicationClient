@@ -110,10 +110,18 @@
             </div>
         </div>
     </div>
-    
-    
-    
+
+
+
     <div id="form_position" class="span6" ng-switch-when="form">
+        <div class="alert alert-warning" ng-show="businessMessages.length > 0">
+            <ul>
+                <li ng-repeat="bm in businessMessages">
+                    <strong>{{bm.field}}</strong>
+                    <strong>{{bm.messages}}</strong>
+                </li>
+            </ul>
+        </div>
         <!-- BEGIN SAMPLE FORMPORTLET-->
         <div id="width-form" class="widget green">
             <div class="widget-title">

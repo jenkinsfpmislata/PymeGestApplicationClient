@@ -146,4 +146,42 @@
         </div>
         <!-- END SAMPLE FORM PORTLET-->
     </div>
+    
+        <div id="form_position" class="span6" ng-switch-when="form">
+        <!-- BEGIN SAMPLE FORMPORTLET-->
+        <div id="width-form" class="widget gray">
+            <div class="widget-title">
+                <h4><i class="icon-reorder"></i> Puesto </h4>
+                <span class="tools">
+                    <a href="javascript:;" class="icon-chevron-down"></a>
+                    <a href="javascript:;" class="icon-remove"></a>
+                </span>
+            </div>
+            <div class="widget-body">
+                <!-- BEGIN FORM-->
+                <form action="" class="form-horizontal" method="POST">
+                    <div class="control-group">
+                        <label class="control-label">Nombre</label>
+                        <div class="controls">
+                            <input type="text" class="input-large" ng-model="oneJob.nombre" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">Descripcion</label>
+                        <div class="controls">
+                            <input type="text" class="input-large" ng-model="oneJob.descripcion" />
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" id="boton-puestos" class="btn btn-primary" ng-click="insertJob()" >Aceptar</button>
+                        <button type="button" class="btn" ng-click="showTable()">
+                            Volver
+                        </button>
+                    </div>
+                </form>
+                <!-- END FORM-->
+            </div>
+        </div>
+        <!-- END SAMPLE FORM PORTLET-->
+    </div>
 </div>
