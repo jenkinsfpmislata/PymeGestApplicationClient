@@ -50,7 +50,7 @@ angular.module('PymeGestApp', [
             
         }).error (function() {
             
-            alert("Contraseña o usuario incorrectos");
+            alert("Contraseña o usuario incorrecto");
         });
     };
 });
